@@ -1,0 +1,27 @@
+<h1 *ngIf="edit;else creation_content">{{sport.name}} 's edition</h1>
+<ng-template #creation_content>
+    <h1>Creation</h1>
+</ng-template>
+<hr>
+<form (ngSubmit)="editSport()">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="sport.name">
+    </div>
+    <div class="form-group">
+        <label for="name">Image</label>
+        <input type="text" class="form-control" id="image" name="image" [(ngModel)]="sport.image">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" rows="3" name="description" [(ngModel)]="sport.description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="categories">Categories</label>
+        <ngx-select-dropdown [multiple]="true" [options]="categories" [(value)]="sportCategories" [config]="config"></ngx-select-dropdown>
+    </div>
+    <button type="submit" class="btn btn-primary" *ngIf="edit;else creationbtn_content">Edit</button>
+    <ng-template #creationbtn_content>
+            <button type="submit" class="btn btn-primary">Creation</button>
+    </ng-template>
+</form>

@@ -1,0 +1,12 @@
+.card {
+    margin: 3px;
+    height: 90%;
+}
+
+.card-link {
+    bottom: 0%;
+}
+
+h5, .card-title, .card-link {
+    color: #333;
+}

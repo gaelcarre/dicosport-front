@@ -1,0 +1,21 @@
+<h1>Sports List ({{sports?.length}})</h1>
+<hr><hr>
+<div class="row">
+  <form class="form-inline col">
+    <input name="searchText" [(ngModel)]="searchText" type="text" class="form-control mr-auto col-6" id="inlineFormInputName">
+    <button class="btn mr-auto offset-md-3 col-3" (click)="reset()">Reset</button>
+  </form>
+</div>
+<hr><hr>
+<div class="row">
+  <div class="col-sm-4" *ngFor="let sport of sports | filter: searchText">
+    <div class="card"> 
+      <div class="card-body">
+        <h5 class="card-title">{{sport.name}}</h5>
+        <!-- <p class="card-text">{{sport.description}}</p> -->
+        <a [routerLink]="['/sports', sport.id]" class="card-link">See More</a>
+      </div>
+    </div>
+  </div>
+</div>
+

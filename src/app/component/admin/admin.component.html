@@ -1,0 +1,70 @@
+<div class="row">
+  <button class="btn" type="button" data-toggle="collapse" data-target="#adminsport" aria-expanded="false" aria-controls="adminsport">
+    Sports' administration
+  </button>
+</div>
+<div class="collapse" id="adminsport">
+  <div class="row">
+      <a routerLink="/sports/create" >New Sport</a>
+  </div>
+  <hr>
+  <div class="row">
+    <a href="#" data-toggle="collapse" data-target="#withoutdesc" aria-expanded="false" aria-controls="withoutdesc">List of sports without description</a>
+    <table class="table collapse" id="withoutdesc">
+      <thead>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col"></th> 
+      </thead>
+      <tbody>
+        <tr *ngFor="let sport of sports | filterWithoutDesc">
+          <th scope="col">{{sport.id}}</th>
+          <td>{{sport.name}}</td>
+          <td><a [routerLink]="['/sports', sport?.id, 'edit']">edit</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr>
+  <div class="row">
+      <a href="#" data-toggle="collapse" data-target="#withoutimage" aria-expanded="false" aria-controls="withoutimage">List of sports without image</a>
+      <table class="table collapse" id="withoutimage">
+        <thead>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col"></th> 
+        </thead>
+        <tbody>
+          <tr *ngFor="let sport of sports | filterWithoutImage">
+            <th scope="col">{{sport.id}}</th>
+            <td>{{sport.name}}</td>
+            <td><a [routerLink]="['/sports', sport?.id, 'edit']">edit</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <hr>
+  <div>
+      <div class="row">
+        <a href="#" data-toggle="collapse" data-target="#sportnametoolong" aria-expanded="false" aria-controls="sportnametoolong">List of sports with long name</a>
+      </div>
+      <div class=" row collapse" id="sportnametoolong">
+        <input type="range" min="0" max="100" class="slider" id="sizeSportName" name="sizeSportName"  [(ngModel)]="sizeSportName">
+        <table class="table">
+          <thead>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col"></th> 
+          </thead>
+          <tbody>
+            <tr *ngFor="let sport of sports | filterTooLong: sizeSportName">
+              <th scope="col">{{sport.id}}</th>
+              <td>{{sport.name}}</td>
+              <td><a [routerLink]="['/sports', sport?.id, 'edit']">edit</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>
+<hr>

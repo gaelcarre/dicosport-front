@@ -1,0 +1,22 @@
+<h1>{{sport.name}}</h1>
+<hr>
+<div class="row" *ngIf="auth.isConnected()">
+  <a class="btn btn-outline-info" [routerLink]="['/sports', sport?.id, 'edit']">edit</a>
+</div>
+<hr *ngIf="auth.isConnected()">
+
+<div class="row" id="categories">
+  <div class="col-sm-4" *ngFor="let relation of sport.categories">
+    <button  disabled class="btn btn-category btn-sm" [ngStyle]="getStyle(relation.category)">{{relation.category.name}}</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col">
+    <h2>Description</h2>
+    <p>{{sport.description}}</p>
+  </div>
+  <div class="col">
+      <img class="img-fluid  rounded " src="assets/images/sports/{{sport?.image}}" alt="">
+  </div>
+</div>  
