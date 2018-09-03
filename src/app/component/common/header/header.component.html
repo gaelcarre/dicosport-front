@@ -1,17 +1,15 @@
-<header class="masthead clearfix">
-  <div class="inner">
-    <h3 class="masthead-brand">Sport Encyclopedia</h3>
-    <nav class="nav nav-masthead justify-content-center">
-      <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/home">News</a>
-      <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/sports">Sports</a>
-      <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/charts/member">Graphe</a>
-      <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" href="/admin/connexion" *ngIf="!auth.isConnected();else logout_content">Sign up</a>
-      <ng-template #logout_content>
-        <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/admin">Admin</a>
-        <a class="nav-link" (click)="logout()" href="#">Logout</a>
-      </ng-template>
-      <!-- <a class="nav-link" (click)="logout()" href="#">Logout-test</a>
-       -->
-    </nav>
-  </div>
+<header>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Sport Encyclopedia</a>
+        <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap" *ngIf="!auth.isConnected();else logout_content">
+            <a class="nav-link" href="#" href="/admin/connexion" >Sign In</a>
+          </li>
+          <ng-template #logout_content>
+              <li class="nav-item text-nowrap">
+                <a class="nav-link" (click)="logout()" href="#">Sign Out</a>
+              </li>
+            </ng-template>
+        </ul>
+      </nav>
 </header>

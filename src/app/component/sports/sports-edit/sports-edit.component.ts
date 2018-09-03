@@ -7,6 +7,8 @@ import { Category } from '../../../pojo/Category';
 import { CategoriesService } from '../../../service/categories.service';
 import { Membership } from '../../../pojo/Membership';
 import { MembershipService } from '../../../service/membership.service';
+import { ErrorService } from '../../../service/error.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-sports-edit',
@@ -27,7 +29,7 @@ export class SportsEditComponent implements OnInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute, private sportsService: SportsService, private categoriesService: CategoriesService,
-    private membershipService: MembershipService) {}
+    private membershipService: MembershipService, private errorService: ErrorService) {}
 
   ngOnInit() {
     console.log(this.route);
@@ -50,6 +52,10 @@ export class SportsEditComponent implements OnInit {
     );
   }
 
+  traiterErreur(err: HttpErrorResponse) {
+    this.errorService.changeError('Technical Issue: ' + err.message);
+  }
+
   getSports() {
     this.sportObservable
       .subscribe(
@@ -61,7 +67,7 @@ export class SportsEditComponent implements OnInit {
           }
         },
         (error) => {
-          console.log(error.message);
+          this.traiterErreur(error);
         });
   }
 
@@ -91,7 +97,7 @@ export class SportsEditComponent implements OnInit {
           this.router.navigate(['sports/' + sport.id]);
         },
         (error) => {
-          console.log(error);
+          this.traiterErreur(error);
         });
     } else {
       this.sportsService.postSport(this.sport).subscribe(
@@ -99,7 +105,7 @@ export class SportsEditComponent implements OnInit {
           this.router.navigate(['sports/' + sport.id]);
         },
         (error) => {
-          console.log(error);
+          this.traiterErreur(error);
         });
     }
 

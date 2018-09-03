@@ -8,7 +8,6 @@ import { SportsListComponent } from './component/sports/sports-list/sports-list.
 import { SportsReadComponent } from './component/sports/sports-read/sports-read.component';
 import { SportsEditComponent } from './component/sports/sports-edit/sports-edit.component';
 import { ForbiddenComponent } from './component/admin/forbidden/forbidden.component';
-import { MemberComponent } from './component/charts/member/member.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -19,8 +18,7 @@ const routes: Routes = [
   {path: 'sports', component: SportsListComponent},
   {path: 'sports/create', component: SportsEditComponent, data: {edit: false}},
   {path: 'sports/:id', component: SportsReadComponent},
-  {path: 'sports/:id/edit', component: SportsEditComponent, data: {edit: true}},
-  {path: 'charts/member', component: MemberComponent}
+  {path: 'sports/:id/edit', component: SportsEditComponent, data: {edit: true}}
 ];
 
 @NgModule({

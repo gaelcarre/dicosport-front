@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '../../../../../node_modules/@angular/rou
 import { SportsService } from '../../../service/sports.service';
 import { Category } from '../../../pojo/Category';
 import { AuthentService } from '../../../service/authent.service';
+import { ErrorService } from '../../../service/error.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-sports-read',
@@ -17,7 +19,8 @@ export class SportsReadComponent implements OnInit {
   private sport: Sport;
 
   constructor(private router: Router,
-    private route: ActivatedRoute, private sportsService: SportsService, private auth: AuthentService) {}
+    private route: ActivatedRoute, private sportsService: SportsService, private auth: AuthentService,
+    private errorService: ErrorService) {}
 
   ngOnInit() {
     this.sport = new Sport(undefined, undefined, undefined, undefined, undefined);
@@ -33,8 +36,12 @@ export class SportsReadComponent implements OnInit {
           }
         },
         (error) => {
-          console.log(error.message);
+          this.traiterErreur(error);
         });
+  }
+
+  traiterErreur(err: HttpErrorResponse) {
+    this.errorService.changeError('Technical Issue: ' + err.message);
   }
 
   getStyle(c: Category): Object {

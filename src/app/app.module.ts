@@ -5,14 +5,12 @@ import {CommonModule} from '@angular/common';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import { FormsModule } from '@angular/forms';
 
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './component/common/header/header.component';
 import { FooterComponent } from './component/common/footer/footer.component';
 import { HomeComponent } from './component/common/home/home.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { NewsListComponent } from './component/news/news-list/news-list.component';
-import {NgxGraphModule} from '@swimlane/ngx-graph';
 import {NewsService} from './service/news.service';
 import {AuthentService} from './service/authent.service';
 import {ConstantProvider} from './const';
@@ -31,7 +29,9 @@ import { ForbiddenComponent } from './component/admin/forbidden/forbidden.compon
 import { FilterWithoutDescPipe } from './util/filterWithoutDesc.pipe';
 import { FilterTooLongPipe } from './util/filterTooLong.pipe';
 import { FilterWithoutImagePipe } from './util/filterWithoutImage.pipe';
-import { MemberComponent } from './component/charts/member/member.component';
+import { MenuComponent } from './component/common/menu/menu.component';
+import { ErrorComponent } from './component/common/error/error.component';
+import { ErrorService } from './service/error.service';
 
 
 @NgModule({
@@ -51,7 +51,8 @@ import { MemberComponent } from './component/charts/member/member.component';
     SportsReadComponent,
     SportsEditComponent,
     ForbiddenComponent,
-    MemberComponent
+    MenuComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -61,10 +62,10 @@ import { MemberComponent } from './component/charts/member/member.component';
     BrowserModule,
     StorageServiceModule,
     FormsModule,
-    SelectDropDownModule,
-    NgxGraphModule
+    SelectDropDownModule
   ],
   providers: [
+    ErrorService,
     NewsService,
     ConstantProvider,
     AuthentService,

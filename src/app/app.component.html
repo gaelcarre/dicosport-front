@@ -1,11 +1,15 @@
-<div class="container site-wrapper">
-    <div class="site-wrapper-inner">
-        <div class="cover-container">
-            <app-header></app-header>
-            <main role="main" class="inner cover">
-                <router-outlet></router-outlet>
+    <app-header></app-header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <app-menu></app-menu>
+            <main role="main container-fluid" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                <div class="d-flex flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <router-outlet></router-outlet>
+                </div>
             </main>
-            <app-footer></app-footer>
         </div>
     </div>
-</div>
+
+    <app-error></app-error>
+    <app-footer></app-footer>

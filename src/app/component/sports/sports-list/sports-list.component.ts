@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SportsService } from '../../../service/sports.service';
 import { Sport } from '../../../pojo/Sport';
 import { HttpErrorResponse } from '../../../../../node_modules/@angular/common/http';
+import { ErrorService } from '../../../service/error.service';
 
 @Component({
   selector: 'app-sports-list',
@@ -13,10 +14,14 @@ export class SportsListComponent implements OnInit {
   private sports: Sport[];
   private searchText;
 
-  constructor(private sportsService: SportsService) { }
+  constructor(private sportsService: SportsService, private errorService: ErrorService) { }
 
   ngOnInit() {
     this.getSports();
+  }
+
+  traiterErreur(err: HttpErrorResponse) {
+    this.errorService.changeError('Technical Issue: ' + err.message);
   }
 
   private getSports() {
@@ -27,10 +32,6 @@ export class SportsListComponent implements OnInit {
       },
       error => this.traiterErreur(error)
     );
-  }
-
-  traiterErreur(err: HttpErrorResponse) {
-    console.log(err);
   }
 
   reset() {
