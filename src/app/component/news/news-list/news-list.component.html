@@ -1,10 +1,10 @@
-<h1>
+<h1 class="page-header">
   News
 </h1>
-<hr><hr>
-<div class="" *ngFor="let new of news">
-  <h2 class="cover-heading">{{new.title}}</h2>
-  <p class="lead">{{new.content}}</p>
+<article class="lead" *ngFor="let new of news">
+  <h3 class="cover-heading">{{new.title}}</h3>
+  <h6 class="text-muted"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>{{formatdate(new.date)}}</h6>
+  <blockquote class="lead">{{new.content}}</blockquote>
   <hr>
-</div>
+</article>
  

@@ -36,7 +36,7 @@ export class SportsEditComponent implements OnInit {
     this.edit = this.route.snapshot.data['edit'];
 
 
-    this.sport = new Sport(undefined, undefined, undefined, undefined, undefined);
+    this.sport = new Sport(undefined, undefined, undefined, undefined, undefined, undefined);
     this.route.params.subscribe(params =>
       this.sportObservable = this.sportsService.getSport(params['id'])
     );
@@ -47,6 +47,9 @@ export class SportsEditComponent implements OnInit {
 
     this.categoriesService.getCategories().subscribe(
       (categories: Category[]) => {
+        for (const c of categories) {
+          c.subcategories = [];
+        }
         this.categories = categories;
       }
     );
@@ -82,7 +85,7 @@ export class SportsEditComponent implements OnInit {
 
       if (membership == null) {
         // console.log('1', this.sport);
-        const newSport: Sport = new Sport(this.sport.id, this.sport.name, this.sport.description, null, this.sport.image);
+        const newSport: Sport = new Sport(this.sport.id, this.sport.name, this.sport.description, null, this.sport.image, null);
         membership = new Membership(undefined, newSport, c);
       }
       this.sport.categories.push(membership);
@@ -91,7 +94,7 @@ export class SportsEditComponent implements OnInit {
     this.processDelete(oldCategories);
 
     if (this.edit) {
-      console.log(this.sport);
+      console.log('edit', this.sport);
       this.sportsService.putSport(this.sport).subscribe(
         (sport: Sport) => {
           this.router.navigate(['sports/' + sport.id]);
@@ -100,6 +103,7 @@ export class SportsEditComponent implements OnInit {
           this.traiterErreur(error);
         });
     } else {
+      console.log('not edit', this.sport);
       this.sportsService.postSport(this.sport).subscribe(
         (sport: Sport) => {
           this.router.navigate(['sports/' + sport.id]);

@@ -1,6 +1,20 @@
 @import '../bower_components/bootstrap/dist/css/bootstrap.min.css';
-
-body {
+/* body {
     font-size: .875rem;
     width: 100%;
-}
+    padding-top: 50px;
+    margin-bottom: 60px;
+    min-height: 100%;
+} */
+/* 
+html {
+    position: relative;
+    height: 100%;
+  } */
+
+  
+  body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  

@@ -7,6 +7,7 @@ import {News} from '../../../pojo/News';
 
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorService } from '../../../service/error.service';
+import { SuccessService } from '../../../service/success.service';
 
 @Component({
   selector: 'app-news-list',
@@ -17,7 +18,7 @@ export class NewsListComponent implements OnInit {
 
   private news: News[];
 
-  constructor(private newsService: NewsService, private errorService: ErrorService) { }
+  constructor(private newsService: NewsService, private errorService: ErrorService, private successService: SuccessService) { }
 
   ngOnInit() {
     this.getNews();
@@ -29,6 +30,7 @@ export class NewsListComponent implements OnInit {
         (news: News[]) => {
           console.log(news);
           this.news = news;
+          this.successService.changeSuccess('News loaded with success');
         },
         error => this.traiterErreur(error)
       );
@@ -36,6 +38,10 @@ export class NewsListComponent implements OnInit {
 
   traiterErreur(err: HttpErrorResponse) {
     this.errorService.changeError('Technical Issue: ' + err.message);
+  }
+
+  formatdate(date: string): String {
+    return (new Date(date)).toUTCString();
   }
 
 

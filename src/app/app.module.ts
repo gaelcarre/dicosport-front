@@ -29,9 +29,22 @@ import { ForbiddenComponent } from './component/admin/forbidden/forbidden.compon
 import { FilterWithoutDescPipe } from './util/filterWithoutDesc.pipe';
 import { FilterTooLongPipe } from './util/filterTooLong.pipe';
 import { FilterWithoutImagePipe } from './util/filterWithoutImage.pipe';
-import { MenuComponent } from './component/common/menu/menu.component';
 import { ErrorComponent } from './component/common/error/error.component';
 import { ErrorService } from './service/error.service';
+import { MemberofComponent } from './component/graph/memberof/memberof.component';
+import { IndexComponent } from './component/graph/index/index.component';
+import { TestComponent } from './component/test/test.component';
+import { CategoriesListComponent } from './component/categories/categories-list/categories-list.component';
+import { SuccessComponent } from './component/common/success/success.component';
+import { SuccessService } from './service/success.service';
+import { PurgeComponent } from './component/admin/purge/purge.component';
+import { AdminService } from './service/admin.service';
+import { FilterWithoutCategoryPipe } from './util/filterWithoutCategory.pipe';
+import { SportComponent } from './component/graph/sport/sport.component';
+import { TotalComponent } from './component/graph/total/total.component';
+import { CategoriesComponent } from './component/graph/categories/categories.component';
+import { GraphService } from './service/graph.service';
+import { SportsEditCategoriesComponent } from './component/sports/sports-edit-categories/sports-edit-categories.component';
 
 
 @NgModule({
@@ -48,11 +61,21 @@ import { ErrorService } from './service/error.service';
     FilterWithoutDescPipe,
     FilterTooLongPipe,
     FilterWithoutImagePipe,
+    FilterWithoutCategoryPipe,
     SportsReadComponent,
     SportsEditComponent,
     ForbiddenComponent,
-    MenuComponent,
-    ErrorComponent
+    ErrorComponent,
+    MemberofComponent,
+    IndexComponent,
+    TestComponent,
+    CategoriesListComponent,
+    SuccessComponent,
+    PurgeComponent,
+    SportComponent,
+    TotalComponent,
+    CategoriesComponent,
+    SportsEditCategoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -66,11 +89,14 @@ import { ErrorService } from './service/error.service';
   ],
   providers: [
     ErrorService,
+    SuccessService,
     NewsService,
     ConstantProvider,
     AuthentService,
     SportsService,
+    AdminService,
     CategoriesService,
+    GraphService,
     MembershipService,
     {
       provide: HTTP_INTERCEPTORS,

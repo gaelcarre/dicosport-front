@@ -1,0 +1,9 @@
+#graphpage {
+    width: 100%;
+    margin: auto;
+    height: calc(100vh - 200px); 
+}
+.tab-content {height: 100%}
+.tab-pane {
+    height: 100%;
+}

@@ -19,6 +19,7 @@
     <div class="form-group">
         <label for="categories">Categories</label>
         <ngx-select-dropdown [multiple]="true" [options]="categories" [(value)]="sportCategories" [config]="config"></ngx-select-dropdown>
+        <span id="helpBlock" class="help-block">If the entity is subsport of any sport, it will inherit of the parent's sport categories. </span>
     </div>
     <button type="submit" class="btn btn-primary" *ngIf="edit;else creationbtn_content">Edit</button>
     <ng-template #creationbtn_content>

@@ -13,6 +13,7 @@ export class ErrorComponent implements OnInit {
   constructor(private service: ErrorService) { }
 
   ngOnInit() {
+    this.message = '';
     this.service.currentMessage.subscribe(message => this.message = message);
   }
 

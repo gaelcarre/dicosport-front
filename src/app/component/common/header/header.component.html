@@ -1,15 +1,51 @@
-<header>
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Sport Encyclopedia</a>
-        <ul class="navbar-nav px-3">
-          <li class="nav-item text-nowrap" *ngIf="!auth.isConnected();else logout_content">
-            <a class="nav-link" href="#" href="/admin/connexion" >Sign In</a>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Secret Sport Society</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+          <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/home">
+            <a class="nav-link" >News</a>
           </li>
-          <ng-template #logout_content>
-              <li class="nav-item text-nowrap">
-                <a class="nav-link" (click)="logout()" href="#">Sign Out</a>
-              </li>
-            </ng-template>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/sports">
+            <a>Sports</a>
+          </li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/categories">
+            <a>Categories</a>
+          </li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/graph/index">
+            <a>Graph</a>
+          </li>
+          <li *ngIf="auth.isConnected()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/admin">
+            <a>Admin</a>
+          </li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/test">
+            <a>Test</a>
+          </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+          <li  *ngIf="!auth.isConnected();else logout_content">
+              <a href="#" href="/admin/connexion" >Sign In</a>
+            </li>
+            <ng-template #logout_content>
+                <li >
+                  <a (click)="logout()" href="#">Sign Out</a>
+                </li>
+              </ng-template>
         </ul>
-      </nav>
-</header>
+      
+    </div>
+  </div>
+</nav>
+
+
+
+        

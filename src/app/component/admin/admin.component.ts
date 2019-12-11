@@ -5,6 +5,7 @@ import {AuthentService} from '../../service/authent.service';
 import { SportsService } from '../../service/sports.service';
 import { Sport } from '../../pojo/Sport';
 import { HttpErrorResponse } from '../../../../node_modules/@angular/common/http';
+import { ErrorService } from '../../service/error.service';
 
 @Component({
   selector: 'app-admin',
@@ -16,7 +17,8 @@ export class AdminComponent implements OnInit {
   private sports: Sport[];
   private sizeSportName = 100;
 
-  constructor(public router: Router, private authentService: AuthentService, private sportsService: SportsService) { }
+  constructor(public router: Router, private errorService: ErrorService,
+    private authentService: AuthentService, private sportsService: SportsService) { }
 
   ngOnInit() {
 
@@ -39,7 +41,7 @@ export class AdminComponent implements OnInit {
   }
 
   traiterErreur(err: HttpErrorResponse) {
-    console.log(err);
+    this.errorService.changeError(err.message);
   }
 
 }

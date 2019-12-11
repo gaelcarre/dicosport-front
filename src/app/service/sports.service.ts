@@ -3,6 +3,7 @@ import { HttpClient } from '../../../node_modules/@angular/common/http';
 import { ConstantProvider } from '../const';
 import { Sport } from '../pojo/Sport';
 import { Observable } from '../../../node_modules/rxjs/Observable';
+import { Category } from '../pojo/Category';
 
 @Injectable()
 export class SportsService {
@@ -22,6 +23,10 @@ export class SportsService {
 
   public postSport(sport: Sport): Observable<Sport> {
     return this.http.post<Sport>(this.constant.serverPath + '/sports', sport);
+  }
+
+  public memberof(sport: Sport): Observable<Category[]> {
+    return this.http.get<Category[]>(this.constant.serverPath + '/public/sports/' + sport.id + '/categories');
   }
 
 }

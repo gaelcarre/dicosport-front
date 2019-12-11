@@ -24,4 +24,7 @@ export class MembershipService {
     );
   }
 
+  public getJson(): Observable<any> {
+    return this.http.get(this.constant.serverPath + '/public/graph');
+  }
 }

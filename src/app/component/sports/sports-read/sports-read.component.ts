@@ -17,13 +17,14 @@ export class SportsReadComponent implements OnInit {
 
   private sportObservable: Observable<Sport>;
   private sport: Sport;
+  private categories: Category[];
 
   constructor(private router: Router,
     private route: ActivatedRoute, private sportsService: SportsService, private auth: AuthentService,
     private errorService: ErrorService) {}
 
   ngOnInit() {
-    this.sport = new Sport(undefined, undefined, undefined, undefined, undefined);
+    this.sport = new Sport(undefined, undefined, undefined, undefined, undefined, undefined);
     this.route.params.subscribe(params =>
       this.sportObservable = this.sportsService.getSport(params['id'])
     );
@@ -32,7 +33,9 @@ export class SportsReadComponent implements OnInit {
       .subscribe(
         (sport: Sport) => {
           if (sport) {
+            console.log(sport);
             this.sport = sport;
+            this.getCategories();
           }
         },
         (error) => {
@@ -42,6 +45,17 @@ export class SportsReadComponent implements OnInit {
 
   traiterErreur(err: HttpErrorResponse) {
     this.errorService.changeError('Technical Issue: ' + err.message);
+  }
+
+  private getCategories() {
+    this.sportsService.memberof(this.sport).subscribe(
+      (categories: Category[]) => {
+        this.categories = categories;
+      },
+      (error) => {
+        this.traiterErreur(error);
+      }
+    );
   }
 
   getStyle(c: Category): Object {

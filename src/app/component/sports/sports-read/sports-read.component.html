@@ -6,8 +6,8 @@
 <hr *ngIf="auth.isConnected()">
 
 <div class="row" id="categories">
-  <div class="col-sm-4" *ngFor="let relation of sport.categories">
-    <button  disabled class="btn btn-category btn-sm" [ngStyle]="getStyle(relation.category)">{{relation.category.name}}</button>
+  <div class="col-sm-4" *ngFor="let category of categories">
+    <button  disabled class="btn btn-category btn-sm" [ngStyle]="getStyle(category)">{{category.name}}</button>
   </div>
 </div>
 <hr>
